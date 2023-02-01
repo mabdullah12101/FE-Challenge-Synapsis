@@ -8,3 +8,12 @@ export const getPost = (page) => {
       .catch((err) => reject(err));
   });
 };
+
+export const getPostDetail = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`posts/${id}`)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+};
