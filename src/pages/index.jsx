@@ -12,7 +12,7 @@ export default function Home(props) {
   return (
     <>
       <Layout title={"Home"}>
-        <section className="grid grid-cols-3 gap-x-7 gap-y-14">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-14">
           {props.listUser.map((item) => (
             <div
               key={item.id}
@@ -24,7 +24,7 @@ export default function Home(props) {
           ))}
         </section>
 
-        <div className="mt-10 flex justify-center items-center">
+        <div className="mt-20 flex justify-center items-center">
           <Pagination
             handlePagination={handlePagination}
             totalPage={props.totalPage}
