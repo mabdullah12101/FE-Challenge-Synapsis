@@ -13,7 +13,7 @@ export default function Home(props) {
     <>
       <Layout title={"Home"}>
         <section className="px-10 sm:px-10 md:px-20 lg:px-20 xl:px-44 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-14">
-          {props.listUser.map((item) => (
+          {props.listPost.map((item) => (
             <div
               key={item.id}
               className="cursor-pointer"
@@ -42,7 +42,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      listUser: result.data,
+      listPost: result.data,
       totalPage: result["headers"]["x-pagination-pages"],
       params,
     },

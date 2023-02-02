@@ -8,3 +8,12 @@ export const getUser = () => {
       .catch((err) => reject(err));
   });
 };
+
+export const updateUser = (id, data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .patch(`users/${id}`, data)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+};

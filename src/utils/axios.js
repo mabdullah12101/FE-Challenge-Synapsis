@@ -8,7 +8,7 @@ axiosApiIntances.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     config.headers = {
-      Authorization: `Bearer ${process.env.TOKEN}`, // Bearer
+      Authorization: `Bearer 0da395a814632d9dac19cf901f4a45346383290f0795cc1ab12b9c2db88df53b`, // Bearer
     };
     return config;
   },

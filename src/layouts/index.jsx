@@ -13,7 +13,7 @@ export default function Layout({ title, children }) {
 
       <div
         id="container"
-        className="bg-gradient-to-b from-[#374151] to-[#111827] text-white font-patrick"
+        className="bg-gradient-to-b from-[#374151] to-[#111827] text-white font-patrick relative"
       >
         <Header />
         <main>{children}</main>
