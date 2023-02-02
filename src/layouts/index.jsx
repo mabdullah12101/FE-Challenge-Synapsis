@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import Head from "next/head";
 
 export default function Layout({ title, children }) {
@@ -11,9 +12,9 @@ export default function Layout({ title, children }) {
 
       <div
         id="container"
-        className="bg-gradient-to-b from-[#374151] to-[#111827] text-white px-44 pt-10 pb-96 font-patrick"
+        className="bg-gradient-to-b from-[#374151] to-[#111827] text-white px-44 font-patrick"
       >
-        {/* <header></header> */}
+        <Header />
         <main>{children}</main>
         {/* <footer></footer> */}
       </div>
