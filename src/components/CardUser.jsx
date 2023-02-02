@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function CardUser({ data, editModal }) {
+export default function CardUser({ data, handleModal }) {
   const [id, setId] = useState();
 
   return (
@@ -49,13 +49,13 @@ export default function CardUser({ data, editModal }) {
             <div
               className={`z-10 ${
                 id === item.id ? "block" : "hidden"
-              } absolute right-0 list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+              } absolute right-0 list-none  divide-y divide-gray-100 rounded-lg shadow w-44 bg-gray-700`}
             >
               <ul className="py-2" aria-labelledby="dropdownButton">
                 <li>
                   <a
                     className="block px-4 py-2 text-sm  hover:bg-gray-600 text-gray-200 hover:text-white cursor-pointer"
-                    onClick={() => editModal(item)}
+                    onClick={() => handleModal("editUser", item)}
                   >
                     Edit
                   </a>

@@ -12,15 +12,13 @@ export default function Modal({ modal, title, closeModal, body }) {
     >
       <div className="relative w-1/3 mx-auto h-full max-w-2xl md:h-auto">
         {/* <!-- Modal content --> */}
-        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 mt-10">
+        <div className="relative  rounded-lg shadow bg-gray-700 mt-10">
           {/* <!-- Modal header --> */}
-          <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              {title}
-            </h3>
+          <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-600">
+            <h3 className="text-xl font-semibold text-white">{title}</h3>
             <button
               type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              className="text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600 hover:text-white"
               onClick={closeModal}
             >
               <svg

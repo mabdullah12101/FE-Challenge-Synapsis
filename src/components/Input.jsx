@@ -3,10 +3,7 @@ import React from "react";
 export default function Input({ label, type, name, id, value, onChange }) {
   return (
     <div>
-      <label
-        htmlFor={id}
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >
+      <label htmlFor={id} className="block mb-2 text-sm font-medium text-white">
         {label}
       </label>
       <input

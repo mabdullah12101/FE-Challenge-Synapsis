@@ -17,3 +17,12 @@ export const updateUser = (id, data) => {
       .catch((err) => reject(err));
   });
 };
+
+export const addUser = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`users`, data)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+};
