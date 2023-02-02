@@ -10,10 +10,10 @@ export default function Detail(props) {
 
   return (
     <Layout title={"Detail Blog"}>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center px-7 sm:px-14 md:px-32 lg:px-52 xl:px-80">
         <BlogDetail postDetail={postDetail} />
 
-        <section className="w-[900px] mt-20">
+        <section className="w-full mt-20">
           <h4 className="text-xl">Comments</h4>
           {postComments.length > 0 ? (
             <div className="pt-10 px-5">
