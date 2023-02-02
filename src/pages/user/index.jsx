@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@/layouts";
 import { addUser, getUser, updateUser } from "@/stores/actions/user";
 import Modal from "@/components/Modal";
@@ -6,11 +6,52 @@ import ModalBodyEditUser from "@/components/ModalBodyEditUser";
 import CardUser from "@/components/CardUser";
 import SearchInput from "@/components/SearchInput";
 import ModalBodyAddUser from "@/components/ModalBodyAddUser";
+import { useRouter } from "next/router";
+import Pagination from "@/components/Pagination";
+import qs from "query-string";
 
 export default function User(props) {
+  const router = useRouter();
+
   const [data, setData] = useState(props.listUser);
   const [detailUser, setDetailUser] = useState({});
   const [modal, setModal] = useState(false);
+  const [search, setSearch] = useState(props.params.name);
+
+  useEffect(() => {
+    setData(props.listUser);
+  }, [props.listUser]);
+
+  const navigateSearch = (data) => {
+    let query = { ...props.params, ...data };
+    if (query.page === 1) {
+      delete query.page;
+    }
+    if (query.name === "") {
+      delete query.name;
+    }
+    if (Object.keys(query).length > 0) {
+      query = qs.stringify(query);
+      router.push(`/user?${query}`);
+    } else {
+      router.push("/user");
+    }
+  };
+
+  const handlePagination = (event) => {
+    // router.push(`/user?page=${event.selected + 1}`);
+    navigateSearch({ page: event.selected + 1 });
+  };
+
+  const handleChangeSearch = (e) => {
+    setSearch({ ...search, [e.target.name]: e.target.value });
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(search);
+    navigateSearch({ page: 1, name: search.name });
+  };
 
   const handleModal = (variant, item) => {
     setModal(variant);
@@ -75,14 +116,6 @@ export default function User(props) {
               closeModal={closeModal}
             />
           }
-          // body={
-          //   <ModalBodyEditUser
-          //     data={detailUser}
-          //     onChange={handleOnChange}
-          //     onSubmit={handleEditUser}
-          //     closeModal={closeModal}
-          //   />
-          // }
           closeModal={closeModal}
         />
       )}
@@ -99,10 +132,17 @@ export default function User(props) {
             </button>
           </div>
 
-          <SearchInput />
+          <SearchInput onChange={handleChangeSearch} onSubmit={handleSearch} />
 
           <div className="mt-10 flex flex-col gap-y-4">
             <CardUser data={data} handleModal={handleModal} />
+          </div>
+
+          <div className="mt-20 flex justify-center items-center">
+            <Pagination
+              handlePagination={handlePagination}
+              totalPage={props.totalPage}
+            />
           </div>
         </section>
       </Layout>
@@ -110,13 +150,18 @@ export default function User(props) {
   );
 }
 
-export async function getServerSideProps() {
-  const result = await getUser();
-  console.log(result.data);
+export async function getServerSideProps(context) {
+  let params = context.query;
+  params.page = params.page ? +params.page : 1;
+  params.name = params.name ? params.name : "";
+  const result = await getUser(params.page, params.name);
+  console.log(result.headers);
 
   return {
     props: {
       listUser: result.data,
+      totalPage: result["headers"]["x-pagination-pages"],
+      params,
     },
   };
 }

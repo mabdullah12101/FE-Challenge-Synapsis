@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function SearchInput() {
+export default function SearchInput({ onChange, onSubmit }) {
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium sr-only text-white"
@@ -32,7 +32,8 @@ export default function SearchInput() {
           id="default-search"
           className="block w-full p-4 pl-10 text-sm border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
           placeholder="Search Name ..."
-          required
+          name="name"
+          onChange={onChange}
         />
         <button
           type="submit"

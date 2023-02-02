@@ -1,9 +1,9 @@
 import axios from "../../utils/axios";
 
-export const getUser = () => {
+export const getUser = (page, name) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`users`)
+      .get(`users?page=${page}&name=${name}`)
       .then((res) => resolve(res))
       .catch((err) => reject(err));
   });
