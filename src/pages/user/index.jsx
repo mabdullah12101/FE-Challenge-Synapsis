@@ -145,7 +145,7 @@ export default function User(props) {
       )}
 
       <Layout title={"User"}>
-        <section className="px-44">
+        <section className="px-7 sm:px-16 md:px-28 lg:px-36 xl:px-44">
           <div className="text-end my-5">
             <button
               onClick={() => handleModal("addUser")}

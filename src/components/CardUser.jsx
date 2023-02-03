@@ -21,7 +21,10 @@ export default function CardUser({ data, handleModal }) {
             </div>
             <div>
               <p className="truncate">{item.name}</p>
-              <p className="text-gray-400 truncate">{item.email}</p>
+              <p className="text-gray-400 truncate">
+                {item.email.substring(0, 15)}{" "}
+                {item.email.length <= 15 ? "" : "..."}
+              </p>
             </div>
           </div>
 
