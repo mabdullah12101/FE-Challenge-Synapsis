@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Layout from "@/layouts";
-import { addUser, getUser, updateUser } from "@/stores/actions/user";
+import {
+  addUser,
+  deleteUser,
+  getUser,
+  updateUser,
+} from "@/stores/actions/user";
 import Modal from "@/components/Modal";
 import ModalBodyEditUser from "@/components/ModalBodyEditUser";
 import CardUser from "@/components/CardUser";
@@ -9,6 +14,8 @@ import ModalBodyAddUser from "@/components/ModalBodyAddUser";
 import { useRouter } from "next/router";
 import Pagination from "@/components/Pagination";
 import qs from "query-string";
+import ModalHeader from "@/components/ModalHeader";
+import ModalConfirm from "@/components/ModalConfirm";
 
 export default function User(props) {
   const router = useRouter();
@@ -39,7 +46,6 @@ export default function User(props) {
   };
 
   const handlePagination = (event) => {
-    // router.push(`/user?page=${event.selected + 1}`);
     navigateSearch({ page: event.selected + 1 });
   };
 
@@ -89,12 +95,22 @@ export default function User(props) {
     });
   };
 
+  const handleDeleteUser = () => {
+    deleteUser(detailUser.id).then(() => {
+      getUser().then((res) => {
+        setDetailUser();
+        setData(res.data);
+        setModal(false);
+      });
+    });
+  };
+
   return (
     <>
       {modal === "editUser" ? (
         <Modal
           modal={modal}
-          title={"Update User"}
+          header={<ModalHeader title={"Update User"} closeModal={closeModal} />}
           body={
             <ModalBodyEditUser
               data={detailUser}
@@ -103,12 +119,11 @@ export default function User(props) {
               closeModal={closeModal}
             />
           }
-          closeModal={closeModal}
         />
-      ) : (
+      ) : modal === "addUser" ? (
         <Modal
           modal={modal}
-          title={"Add User"}
+          header={<ModalHeader title={"Add User"} closeModal={closeModal} />}
           body={
             <ModalBodyAddUser
               onChange={handleOnChange}
@@ -116,7 +131,16 @@ export default function User(props) {
               closeModal={closeModal}
             />
           }
-          closeModal={closeModal}
+        />
+      ) : (
+        <Modal
+          modal={modal}
+          body={
+            <ModalConfirm
+              closeModal={closeModal}
+              handleDeleteUser={handleDeleteUser}
+            />
+          }
         />
       )}
 
