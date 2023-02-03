@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import Layout from "@/layouts";
+import Layout from "../../layouts";
 import {
   addUser,
   deleteUser,
   getUser,
   updateUser,
-} from "@/stores/actions/user";
-import Modal from "@/components/Modal";
-import ModalBodyEditUser from "@/components/ModalBodyEditUser";
-import CardUser from "@/components/CardUser";
-import SearchInput from "@/components/SearchInput";
-import ModalBodyAddUser from "@/components/ModalBodyAddUser";
+} from "../../stores/actions/user";
+import Modal from "../../components/Modal";
+import ModalBodyEditUser from "../../components/ModalBodyEditUser";
+import CardUser from "../../components/CardUser";
+import SearchInput from "../../components/SearchInput";
+import ModalBodyAddUser from "../../components/ModalBodyAddUser";
 import { useRouter } from "next/router";
-import Pagination from "@/components/Pagination";
+import Pagination from "../../components/Pagination";
 import qs from "query-string";
-import ModalHeader from "@/components/ModalHeader";
-import ModalConfirm from "@/components/ModalConfirm";
+import ModalHeader from "../../components/ModalHeader";
+import ModalConfirm from "../../components/ModalConfirm";
 
 export default function User(props) {
   const router = useRouter();

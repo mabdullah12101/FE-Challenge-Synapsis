@@ -1,8 +1,8 @@
-import { getPost } from "@/stores/actions/post";
-import Layout from "@/layouts";
+import { getPost } from "../stores/actions/post";
+import Layout from "../layouts";
 import { useRouter } from "next/router";
-import Blog from "@/components/blog";
-import Pagination from "@/components/Pagination";
+import Blog from "../components/blog";
+import Pagination from "../components/Pagination";
 
 export default function Home(props) {
   const router = useRouter();

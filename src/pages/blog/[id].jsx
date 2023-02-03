@@ -1,8 +1,8 @@
-import BlogDetail from "@/components/BlogDetail";
-import Comments from "@/components/Comments";
-import Layout from "@/layouts";
-import { getPostComments } from "@/stores/actions/comment";
-import { getPostDetail } from "@/stores/actions/post";
+import BlogDetail from "../../components/BlogDetail";
+import Comments from "../../components/Comments";
+import Layout from "../../layouts";
+import { getPostComments } from "../../stores/actions/comment";
+import { getPostDetail } from "../../stores/actions/post";
 import React from "react";
 
 export default function Detail(props) {
